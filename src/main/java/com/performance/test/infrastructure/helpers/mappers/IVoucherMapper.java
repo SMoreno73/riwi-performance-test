@@ -1,5 +1,6 @@
-package com.performance.test.mappers;
+package com.performance.test.infrastructure.helpers.mappers;
 
+import com.performance.test.api.dto.response.VoucherResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -12,10 +13,8 @@ import com.performance.test.domain.entities.Voucher;
 public interface IVoucherMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "status", ignore = true)
-    @Mapping(target = "reedemedVouchers", ignore = true)
-    Voucher requestToEntity(VoucherRequest request);
+    Voucher toVoucher(VoucherRequest voucherRequest);
 
-    VoucherBasicResponse entityToResponse(Voucher entity);
+    VoucherResponse toVoucherResponse(Voucher voucher);
 
 }

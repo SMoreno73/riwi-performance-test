@@ -1,4 +1,4 @@
-package com.performance.test.mappers;
+package com.performance.test.infrastructure.helpers.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,15 +10,8 @@ import com.performance.test.domain.entities.User;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface IUserMapper {
-
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "reedemedVouchers", ignore = true)
-    User requestToEntity(UserRequest request);
+    User toUser(UserRequest userRequest);
 
-    @Mapping(target = "reedemedVouchers", ignore = true)
-    UserResponse entityToResponse(User entity);
-
-
-
-
+    UserResponse toUserResponse(User user);
 }

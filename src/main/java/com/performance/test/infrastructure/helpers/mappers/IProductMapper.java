@@ -1,5 +1,6 @@
-package com.performance.test.mappers;
+package com.performance.test.infrastructure.helpers.mappers;
 
+import com.performance.test.api.dto.response.ProductResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -12,9 +13,8 @@ import com.performance.test.domain.entities.Product;
 public interface IProductMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "reedemedVouchers", ignore = true)
-    Product requestToEntity(ProductRequest request);
+    Product toProduct(ProductRequest productRequest);
 
-    ProductBasicResponse entityToResponse(Product entity);
+    ProductResponse toProductResponse(Product product);
 
 }
