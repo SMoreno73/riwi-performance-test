@@ -5,12 +5,11 @@ import com.performance.test.api.dto.response.VoucherResponse;
 import com.performance.test.domain.entities.Voucher;
 import com.performance.test.infrastructure.abstract_services.generic.*;
 
-public interface IVoucher extends
+public interface IVoucherService extends
         CreateService<VoucherRequest, VoucherResponse>,
         ReadService<VoucherResponse, Long>,
         ReadAllService<VoucherResponse>,
         DeleteService<Long>,
-        UpdateService<Long, VoucherRequest, VoucherResponse>
-{
+        UpdateService<VoucherRequest, VoucherResponse, Long> {
     Voucher getVoucherById(Long id);
 }
