@@ -2,17 +2,22 @@ package com.performance.test.infrastructure.services;
 
 import com.performance.test.api.dto.request.VoucherRequest;
 import com.performance.test.api.dto.response.VoucherResponse;
+import com.performance.test.api.dto.response.VoucherStatusResponse;
 import com.performance.test.domain.entities.Voucher;
 import com.performance.test.domain.repositories.VoucherRepository;
 import com.performance.test.infrastructure.abstract_services.IVoucherService;
 import com.performance.test.infrastructure.helpers.mappers.IVoucherMapper;
 import com.performance.test.util.exeptions.IdNotFoundException;
+import com.performance.test.util.exeptions.VoucherValidation.VoucherExpiredException;
+import com.performance.test.util.exeptions.VoucherValidation.VoucherInactiveException;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -60,4 +65,19 @@ public class VoucherService implements IVoucherService {
                 .orElseThrow(() -> new IdNotFoundException("VOUCHER", id));
     }
 
+    @Override
+    public VoucherStatusResponse checkVoucherValidity(Long id) {
+
+        Voucher existingVoucher = getVoucherById(id);
+
+        if (existingVoucher.getExpirationDate().isBefore(LocalDate.now())) {
+            throw new VoucherExpiredException("Voucher has expired");
+        } 
+        if (!existingVoucher.isStatus()) {
+            throw new VoucherInactiveException("Voucher is not active");
+        }
+
+        return new VoucherStatusResponse(existingVoucher, "Voucher is active and valid");
+
+    }   
 }
