@@ -1,10 +1,11 @@
 package com.performance.test.infrastructure.services;
 
-import com.performance.test.api.dto.request.VoucherRequest;
-import com.performance.test.api.dto.response.VoucherResponse;
+import com.performance.test.api.dto.request.ReedemVoucherRequest;
+import com.performance.test.api.dto.response.ReedemedVoucherResponse;
 import com.performance.test.domain.entities.ReedemedVoucher;
 import com.performance.test.domain.repositories.ReedemedVoucherRepository;
 import com.performance.test.infrastructure.abstract_services.IReedemedVoucherService;
+import com.performance.test.infrastructure.helpers.mappers.IRedeemedVouchersMapper;
 import com.performance.test.util.exeptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,29 +22,34 @@ public class ReedemedVoucherService implements IReedemedVoucherService {
     @Autowired
     private final ReedemedVoucherRepository reedemedVoucherRepository;
 
-    @Override
-    public VoucherResponse create(VoucherRequest voucherRequest) {
-        return null;
-    }
+    @Autowired
+    private final IRedeemedVouchersMapper redeemedVoucherMapper;
 
     @Override
     public void delete(Long aLong) {
-
+        reedemedVoucherRepository.deleteById(aLong);
     }
 
     @Override
-    public Page<VoucherResponse> getAll(Pageable pageable) {
-        return null;
+    public ReedemedVoucherResponse create(ReedemVoucherRequest reedemVoucherRequest) {
+        ReedemedVoucher reedemedVoucher = redeemedVoucherMapper.toReedemedVoucher(reedemVoucherRequest);
+        return redeemedVoucherMapper.toReedemedVoucherResponse(reedemedVoucherRepository.save(reedemedVoucher));
     }
 
     @Override
-    public Optional<VoucherResponse> getById(Long aLong) {
-        return Optional.empty();
+    public Page<ReedemedVoucherResponse> getAll(Pageable pageable) {
+        Page<ReedemedVoucher> reedemedVouchers = reedemedVoucherRepository.findAll(pageable);
+        return reedemedVouchers.map(redeemedVoucherMapper::toReedemedVoucherResponse);
+    }
+
+    @Override
+    public Optional<ReedemedVoucherResponse> getById(Long aLong) {
+        return Optional.of(redeemedVoucherMapper.toReedemedVoucherResponse(getVoucherById(aLong)));
     }
 
     @Override
     public ReedemedVoucher getVoucherById(Long id) {
         return reedemedVoucherRepository.findById(id)
-                .orElseThrow(() -> new IdNotFoundException("VOUCHER", id));
+                .orElseThrow(() -> new IdNotFoundException("REEDEMED_VOUCHER", id));
     }
 }
