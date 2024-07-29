@@ -4,6 +4,7 @@ import com.performance.test.api.dto.request.VoucherRequest;
 import com.performance.test.api.dto.response.VoucherResponse;
 import com.performance.test.domain.entities.Voucher;
 import com.performance.test.domain.repositories.VoucherRepository;
+import com.performance.test.infrastructure.abstract_services.IReedemedVoucherService;
 import com.performance.test.infrastructure.abstract_services.IVoucherService;
 import com.performance.test.infrastructure.helpers.mappers.IVoucherMapper;
 import com.performance.test.util.exeptions.IdNotFoundException;
@@ -25,6 +26,9 @@ public class VoucherService implements IVoucherService {
     @Autowired
     private final IVoucherMapper voucherMapper;
 
+    @Autowired
+    private final IReedemedVoucherService reedemedVoucherService;
+
     @Override
     public VoucherResponse create(VoucherRequest voucherRequest) {
         Voucher voucher = voucherMapper.toVoucher(voucherRequest);
@@ -33,7 +37,10 @@ public class VoucherService implements IVoucherService {
 
     @Override
     public void delete(Long aLong) {
-        voucherRepository.deleteById(aLong);
+        if (reedemedVoucherService.getReedemedVoucherByVoucherId(aLong) == null) {
+            voucherRepository.deleteById(aLong);
+        } else
+            throw new IdNotFoundException("VOUCHER IS IN USE", aLong);
     }
 
     @Override
@@ -50,8 +57,11 @@ public class VoucherService implements IVoucherService {
     @Override
     public VoucherResponse update(Long aLong, VoucherRequest voucherRequest) {
         Voucher existingVoucher = getVoucherById(aLong);
-        voucherMapper.updateFromVoucherRequest(voucherRequest, existingVoucher);
-        return voucherMapper.toVoucherResponse(voucherRepository.save(existingVoucher));
+        if (reedemedVoucherService.getReedemedVoucherByVoucherId(aLong) == null) {
+            voucherMapper.updateFromVoucherRequest(voucherRequest, existingVoucher);
+            return voucherMapper.toVoucherResponse(voucherRepository.save(existingVoucher));
+        } else
+            throw new IdNotFoundException("VOUCHER IS IN USE", aLong);
     }
 
     @Override

@@ -9,6 +9,8 @@ import com.performance.test.infrastructure.abstract_services.generic.CreateServi
 import com.performance.test.infrastructure.abstract_services.generic.DeleteService;
 import com.performance.test.infrastructure.abstract_services.generic.ReadAllService;
 import com.performance.test.infrastructure.abstract_services.generic.ReadService;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface IReedemedVoucherService extends
         CreateService<ReedemVoucherRequest, ReedemedVoucherResponse>,
@@ -16,4 +18,5 @@ public interface IReedemedVoucherService extends
         ReadAllService<ReedemedVoucherResponse>,
         DeleteService<Long> {
     ReedemedVoucher getVoucherById(Long id);
+    ReedemedVoucher getReedemedVoucherByVoucherId(Long voucherId);
 }

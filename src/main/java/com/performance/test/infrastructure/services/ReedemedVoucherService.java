@@ -52,4 +52,9 @@ public class ReedemedVoucherService implements IReedemedVoucherService {
         return reedemedVoucherRepository.findById(id)
                 .orElseThrow(() -> new IdNotFoundException("REEDEMED_VOUCHER", id));
     }
+
+    @Override
+    public ReedemedVoucher getReedemedVoucherByVoucherId(Long voucherId) {
+        return reedemedVoucherRepository.getReedemedVoucherByVoucherId(voucherId);
+    }
 }
