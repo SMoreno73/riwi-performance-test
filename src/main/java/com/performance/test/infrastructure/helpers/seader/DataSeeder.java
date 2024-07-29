@@ -1,4 +1,4 @@
-package com.performance.test.seader;
+package com.performance.test.infrastructure.helpers.seader;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
