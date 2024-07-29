@@ -2,11 +2,31 @@
 
 This project is an ecommerce application for managing and redeeming discount coupons.
 
-## Requirements
+# Members
+- Sebastian Moreno
+- Julian Usuga
+- Santiago Pelaez
+- Daniel Parra
 
-- Docker installed
+## Requirements
 - Docker installed
 - Java 17 installed
+
+# DIAGRAMS
+
+## Entities and Relationship
+https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/emxnobt9e7xj8lnhjug6.png
+
+## Architecture
+https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/xd5za26rdh7l4loresz0.png
+
+## Use Cases
+https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/itdnimcut0vvaydjeuxf.png
+
+
+# Explain our solution
+We separate the application in 3 main tables (User, Product, Voucher) and an intermediate one to manage the history of redeemed vouchers, we allow to create user, product and voucher, and the user has permissions to see the products and vouchers available and their voucher history, we validate that the vucher are available, that they have not expired and have not been redeemed, we use specialized queries.
+
 
 ## Instructions to Start the Application
 
