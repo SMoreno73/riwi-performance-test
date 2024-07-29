@@ -11,15 +11,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @Entity(name = "user")
-@Data
-@Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -31,8 +29,6 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @OneToMany(
         fetch = FetchType.EAGER,
         mappedBy = "userId",
