@@ -12,6 +12,7 @@ import lombok.Setter;
 public class ProductBasicResponse {
 
     private Long id;
+    private String name;
     private double price;
     
 }
