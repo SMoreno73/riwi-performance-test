@@ -15,13 +15,13 @@ This project is an ecommerce application for managing and redeeming discount cou
 # DIAGRAMS
 
 ## Entities and Relationship
-https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/emxnobt9e7xj8lnhjug6.png
+![Entities and Relationship](https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/emxnobt9e7xj8lnhjug6.png)
 
 ## Architecture
-https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/xd5za26rdh7l4loresz0.png
+![Architecture](https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/xd5za26rdh7l4loresz0.png)
 
 ## Use Cases
-https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/itdnimcut0vvaydjeuxf.png
+![Use Cases](https://res.cloudinary.com/dycsevcp0/image/upload/v1722270711/riwi-performance-test/itdnimcut0vvaydjeuxf.png)
 
 
 # Explain our solution
