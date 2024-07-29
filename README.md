@@ -66,6 +66,7 @@ Once you have verified that you have Java 17 installed and the Docker services a
 - If you need to make changes to the Docker configuration, you can edit the `docker-compose.yml` file as needed.
 
 ## Contact
+**Click up:** https://sharing.clickup.com/9013368328/b/h/6-901304809984-2/a0692e98c6d0483
 
 If you have any questions or issues, please contact [SMoreno73](https://github.com/SMoreno73).
 ```
