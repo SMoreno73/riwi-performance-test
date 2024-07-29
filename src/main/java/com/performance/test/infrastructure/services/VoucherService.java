@@ -2,9 +2,7 @@ package com.performance.test.infrastructure.services;
 
 import com.performance.test.api.dto.request.VoucherRequest;
 import com.performance.test.api.dto.response.VoucherResponse;
-import com.performance.test.domain.entities.ReedemedVoucher;
 import com.performance.test.domain.entities.Voucher;
-import com.performance.test.domain.repositories.ReedemedVoucherRepository;
 import com.performance.test.domain.repositories.VoucherRepository;
 import com.performance.test.infrastructure.abstract_services.IVoucherService;
 import com.performance.test.infrastructure.helpers.mappers.IVoucherMapper;
