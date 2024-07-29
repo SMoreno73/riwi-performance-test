@@ -5,6 +5,7 @@ import com.performance.test.api.dto.response.ProductResponse;
 import com.performance.test.domain.entities.Product;
 import com.performance.test.domain.repositories.ProductRepository;
 import com.performance.test.infrastructure.abstract_services.IProductService;
+import com.performance.test.infrastructure.helpers.mappers.IProductMapper;
 import com.performance.test.util.exeptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +22,28 @@ public class ProductService implements IProductService {
     @Autowired
     private final ProductRepository productRepository;
 
+    @Autowired
+    private final IProductMapper productMapper;
+
     @Override
     public ProductResponse create(ProductRequest productRequest) {
-        return null;
+        return this.productMapper.toProductResponse(this.productRepository.save(this.productMapper.toProduct(productRequest)));
     }
 
     @Override
-    public void delete(Long aLong) {
-
+    public void delete(Long id) {
+        this.productRepository.delete(this.getProductById(id));
     }
 
     @Override
     public Page<ProductResponse> getAll(Pageable pageable) {
-        return null;
+        Page<Product> productPage = productRepository.findAll(pageable);
+        return productPage.map(productMapper::toProductResponse);
     }
 
     @Override
-    public Optional<ProductResponse> getById(Long aLong) {
-        return Optional.empty();
+    public Optional<ProductResponse> getById(Long id) {
+        return Optional.of(productMapper.toProductResponse(getProductById(id)));
     }
 
     @Override
