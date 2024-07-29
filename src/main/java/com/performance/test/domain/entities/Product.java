@@ -1,5 +1,6 @@
 package com.performance.test.domain.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -37,5 +38,5 @@ public class Product {
         cascade = CascadeType.ALL,
         orphanRemoval = false
     )
-    private List<ReedemedVoucher> reedemedVouchers;
+    private List<ReedemedVoucher> reedemedVouchers = new ArrayList<>();
 }

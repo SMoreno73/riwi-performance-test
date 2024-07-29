@@ -34,8 +34,6 @@ public class Voucher {
     @Column(nullable = false)
     private boolean status;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     @OneToMany(
         fetch = FetchType.EAGER,
         mappedBy = "voucherId",

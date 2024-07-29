@@ -12,6 +12,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductRequest {
 
+    @NotNull(message = "Name of the product is required")
+    private String name;
+
     @NotNull(message = "price of the product is required")
     private double price;
     

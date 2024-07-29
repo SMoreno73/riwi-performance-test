@@ -2,6 +2,9 @@ package com.performance.test.api.dto.response;
 
 import java.time.LocalDate;
 
+import com.performance.test.domain.entities.Product;
+import com.performance.test.domain.entities.User;
+import com.performance.test.domain.entities.Voucher;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +20,8 @@ public class ReedemedVoucherResponse {
     private LocalDate date;
     private double finalPrice;
 
-    private Long userdId;
-    private Long productId;
-    private Long voucherId;
+    private User userId;
+    private Product productId;
+    private Voucher voucherId;
     
 }

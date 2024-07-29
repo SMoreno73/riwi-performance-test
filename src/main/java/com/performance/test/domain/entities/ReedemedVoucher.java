@@ -2,6 +2,7 @@ package com.performance.test.domain.entities;
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,4 +41,5 @@ public class ReedemedVoucher {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product productId;
+
 }
