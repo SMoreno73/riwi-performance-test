@@ -1,5 +1,7 @@
 package com.performance.test.infrastructure.abstract_services;
 
+import java.util.List;
+
 import com.performance.test.api.dto.request.VoucherRequest;
 import com.performance.test.api.dto.response.VoucherResponse;
 import com.performance.test.domain.entities.ReedemedVoucher;
